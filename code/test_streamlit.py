@@ -20,14 +20,14 @@ if game_name:
         league = get_league(encrypted_summonerid, key)
 
         profile_icon_id = summoner['profileIconId']
-        PROFILE_ICON_PATH = "data/dragon-14.24.1/14.21.1/img/profileicon/"
+        PROFILE_ICON_PATH = "../data/dragontail-14.24.1/14.21.1/img/profileicon/"
         profile_icon_path = os.path.join(PROFILE_ICON_PATH, f"{profile_icon_id}.png")
-
+        
 
         st.header(f"**{account['gameName']}**#{account['tagLine']}")
         
         if os.path.exists(profile_icon_path):
-            st.image(profile_icon_path, caption="Profile Icon", width=100)
+            st.image(profile_icon_path, caption="Profile Icon")
         else:
             st.write("Profile icon not found.")
         
