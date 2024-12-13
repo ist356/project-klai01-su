@@ -19,7 +19,7 @@ if game_name:
 
         league = get_league(encrypted_summonerid, key)
 
-        profile_icon_id = summoner['profileIconId']
+        profile_icon_id = str(summoner['profileIconId'])
         PROFILE_ICON_PATH = '../project-klai01-su/data/dragontail-14.24.1/14.24.1/img/profileicon/'
         profile_icon_path = PROFILE_ICON_PATH + profile_icon_id + '.png'
         
@@ -27,7 +27,7 @@ if game_name:
         st.header(f"**{account['gameName']}**#{account['tagLine']}")
         
         if os.path.exists(profile_icon_path):
-            st.image(profile_icon_path, caption="Profile Icon")
+            st.image(profile_icon_path, width=128)
         else:
             st.write("Profile icon not found.")
         

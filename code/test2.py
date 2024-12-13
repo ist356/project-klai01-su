@@ -22,12 +22,6 @@ print("")
 print(league)
 
 print(account['gameName']+account['tagLine'])
-profile_icon_id = summoner['profileIconId']
-
-PROFILE_ICON_PATH = "/data/dragontail-14.24.1/14.21.1/img/profileicon/"
-profile_icon_path = os.path.join(PROFILE_ICON_PATH, f"{profile_icon_id}.png")
-image = Image.open(f'{profile_icon_path}')
-image.show()
 
 print(summoner['summonerLevel'])
 print(league[0]['tier'] + " " + league[0]['rank'] + " " + str(league[0]['leaguePoints']) + " LP")
