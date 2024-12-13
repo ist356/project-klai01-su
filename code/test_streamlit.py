@@ -20,8 +20,8 @@ if game_name:
         league = get_league(encrypted_summonerid, key)
 
         profile_icon_id = summoner['profileIconId']
-        PROFILE_ICON_PATH = "../data/dragontail-14.24.1/14.21.1/img/profileicon/"
-        profile_icon_path = os.path.join(PROFILE_ICON_PATH, f"{profile_icon_id}.png")
+        PROFILE_ICON_PATH = '../project-klai01-su/data/dragontail-14.24.1/14.24.1/img/profileicon/'
+        profile_icon_path = PROFILE_ICON_PATH + profile_icon_id + '.png'
         
 
         st.header(f"**{account['gameName']}**#{account['tagLine']}")
