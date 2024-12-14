@@ -5,6 +5,8 @@ import pandas as pd
 
 key = "RGAPI-6c6db368-1d25-4ea7-9244-a0f06bcbe898"
 
+st.set_page_config(layout="wide")
+
 st.title("LoL Account Data")
 game_name = st.text_input("Enter Game Name (e.g., Doublelift#NA1):")
 
@@ -52,7 +54,12 @@ if game_name:
             st.write("No data available.")
 
         match_id = get_match_id(encrypted_puuid, key)
-        match_detail = get_matchdetail(match_id, key)
+        match_detail = get_matchdetail(match_id[0], key)
+
+        gamelength_secs = match_detail['info']['gameDuration']
+
+        minutes = gamelength_secs // 60
+        remaining_seconds = gamelength_secs % 60
 
         participants = match_detail['info']['participants']
 
@@ -62,11 +69,10 @@ if game_name:
             "item0", "item1", "item2", "item3", "item4", "item5", "item6"
         ]
 
-        # Create the DataFrame
         match_df = pd.DataFrame(participants)[selected_stats]
 
-        # Streamlit app
         st.title("Match Details")
+        st.write(f"Game Duration: {minutes}m {remaining_seconds}s")
         st.dataframe(match_df)
 
     except Exception as e:

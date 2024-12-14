@@ -39,7 +39,7 @@ def get_league(encrypted_summonerid, key):
     return leaguev4_data
 
 def get_match_id(encrypted_puuid, key):
-    matchid_uri = f"https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start=0&count=1&api_key={key}"
+    matchid_uri = f"https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/{encrypted_puuid}/ids?start=0&count=5&api_key={key}"
     response = requests.get(matchid_uri)
     response.raise_for_status()
     match_id = response.json()
@@ -54,11 +54,17 @@ def get_matchdetail(match_id, key):
 
 match_id = get_match_id(encrypted_puuid, key)
 
-match_detail = get_matchdetail(match_id, key)
+match_detail = get_matchdetail(match_id[0], key)
 
+gamelength_secs = match_detail['info']['gameDuration']
+
+minutes = gamelength_secs // 60
+remaining_seconds = gamelength_secs % 60
+
+print(f"{minutes}m {remaining_seconds}s")
 
 participants = match_detail['info']['participants']
 
 selected_stats = ["summonerName", "championName", "champLevel", "kills", "deaths", "assists", "totalDamageDealtToChampions", "visionScore", "totalMinionsKilled", "item0", "item1", "item2", "item3", "item4", "item5", "item6"]
 match_df = pd.DataFrame(participants)[selected_stats]
-print(match_df)
+# print(match_df)
