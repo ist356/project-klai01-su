@@ -52,9 +52,9 @@ response.raise_for_status()
 currentmatch_data = response.json()
 participants = currentmatch_data['info']['participants']
 
-selected_stats = ["summonerName", "championName", "summonerLevel", "kills", "deaths", "assists", "totalDamageDealtToChampions", "totalDamageTaken", "goldEarned", "champLevel", "visionScore", "totalMinionsKilled", "item0", "item1", "item2", "item3", "item4", "item5", "item6"]
-df = pd.DataFrame(participants)[selected_stats]
-print(df)
+selected_stats = ["summonerName", "championName", "champLevel", "kills", "deaths", "assists", "totalDamageDealtToChampions", "visionScore", "totalMinionsKilled", "item0", "item1", "item2", "item3", "item4", "item5", "item6"]
+match_df = pd.DataFrame(participants)[selected_stats]
+print(match_df)
 
 # participants_list = []
 # for i in range(len(participants)):
