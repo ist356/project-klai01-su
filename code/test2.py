@@ -2,7 +2,8 @@ from test import get_account, get_summoner, get_league
 from PIL import Image
 import os
 
-key = "RGAPI-c6d36bf4-db17-48f2-a385-0d35396d2c24"
+# Doublelift#NA1
+key = "RGAPI-6c6db368-1d25-4ea7-9244-a0f06bcbe898"
 
 game_name = input("Game name: ")
 name, tagline = game_name.split("#", 1)
@@ -25,3 +26,9 @@ print(account['gameName']+account['tagLine'])
 
 print(summoner['summonerLevel'])
 print(league[0]['tier'] + " " + league[0]['rank'] + " " + str(league[0]['leaguePoints']) + " LP")
+
+wins = league[0]['wins']
+losses = league[0]['losses']
+winrate = wins / (wins + losses) * 100
+print(f"{wins}W {losses}L")
+print(f"Winrate: {winrate:.0f}%")

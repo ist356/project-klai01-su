@@ -2,7 +2,7 @@ import cassiopeia as cass
 import pandas as pd
 # import streamlit as st
 
-cass.set_riot_api_key("RGAPI-c6d36bf4-db17-48f2-a385-0d35396d2c24")
+cass.set_riot_api_key("RGAPI-6c6db368-1d25-4ea7-9244-a0f06bcbe898")
 
 account = cass.get_account(name="Doublelift", tagline="NA1", region="NA")
 summoner = account.summoner

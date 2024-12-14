@@ -2,7 +2,7 @@ import requests
 import pandas as pd
 
 # constants
-key = "RGAPI-c6d36bf4-db17-48f2-a385-0d35396d2c24"
+key = "RGAPI-6c6db368-1d25-4ea7-9244-a0f06bcbe898"
 
 # game_name = input("Game name: ")
 

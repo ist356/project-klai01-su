@@ -2,7 +2,7 @@ from test import get_account, get_summoner, get_league
 import streamlit as st
 import os
 
-key = "RGAPI-c6d36bf4-db17-48f2-a385-0d35396d2c24"
+key = "RGAPI-6c6db368-1d25-4ea7-9244-a0f06bcbe898"
 
 st.title("Riot Games Account Information")
 game_name = st.text_input("Enter Game Name (e.g., Doublelift#NA1):")
@@ -38,6 +38,13 @@ if game_name:
             )
         else:
             st.write("No information available.")
+
+        wins = league[0]['wins']
+        losses = league[0]['losses']
+        winrate = wins / (wins + losses) * 100
+
+        st.write(f"{wins}W {losses}L")
+        st.write(f"Winrate: {winrate:.0f}%")
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
