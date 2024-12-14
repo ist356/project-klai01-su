@@ -1,6 +1,7 @@
-from test import get_account, get_summoner, get_league
+from test import get_account, get_summoner, get_league, get_match_id, get_matchdetail
 import streamlit as st
 import os
+import pandas as pd
 
 key = "RGAPI-6c6db368-1d25-4ea7-9244-a0f06bcbe898"
 
@@ -49,6 +50,24 @@ if game_name:
                 
         else:
             st.write("No data available.")
+
+        match_id = get_match_id(encrypted_puuid, key)
+        match_detail = get_matchdetail(match_id, key)
+
+        participants = match_detail['info']['participants']
+
+        selected_stats = [
+            "summonerName", "championName", "champLevel", "kills", "deaths", "assists",
+            "totalDamageDealtToChampions", "visionScore", "totalMinionsKilled",
+            "item0", "item1", "item2", "item3", "item4", "item5", "item6"
+        ]
+
+        # Create the DataFrame
+        match_df = pd.DataFrame(participants)[selected_stats]
+
+        # Streamlit app
+        st.title("Match Details")
+        st.dataframe(match_df)
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
