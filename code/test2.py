@@ -20,15 +20,5 @@ print(account)
 print("")
 print(summoner)
 print("")
-print(league)
+# print(league)
 
-print(account['gameName']+account['tagLine'])
-
-print(summoner['summonerLevel'])
-print(league[0]['tier'] + " " + league[0]['rank'] + " " + str(league[0]['leaguePoints']) + " LP")
-
-wins = league[0]['wins']
-losses = league[0]['losses']
-winrate = wins / (wins + losses) * 100
-print(f"{wins}W {losses}L")
-print(f"Winrate: {winrate:.0f}%")

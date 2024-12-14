@@ -4,7 +4,7 @@ import os
 
 key = "RGAPI-6c6db368-1d25-4ea7-9244-a0f06bcbe898"
 
-st.title("Riot Games Account Information")
+st.title("LoL Account Data")
 game_name = st.text_input("Enter Game Name (e.g., Doublelift#NA1):")
 
 if game_name:
@@ -24,7 +24,7 @@ if game_name:
         profile_icon_path = PROFILE_ICON_PATH + profile_icon_id + '.png'
         
 
-        st.header(f"**{account['gameName']}**#{account['tagLine']}")
+        st.subheader(f"**{account['gameName']}**#{account['tagLine']}")
         
         if os.path.exists(profile_icon_path):
             st.image(profile_icon_path, width=128)
@@ -32,19 +32,23 @@ if game_name:
             st.write("Profile icon not found.")
         
         st.write(f"**Level:** {summoner['summonerLevel']}")
+
+        st.write(f"**Ranked Stats:**")
         if league:
-            st.write(
-                f"**Rank:** {league[0]['tier']} {league[0]['rank']} - {league[0]['leaguePoints']} LP"
-            )
+            for i in range(len(league)):
+                wins = league[i]['wins']
+                losses = league[i]['losses']
+                winrate = wins / (wins + losses) * 100
+                
+                st.write(f"""
+                        **{league[i]['queueType']}:**  
+                        {league[i]['tier']} {league[i]['rank']} - {league[i]['leaguePoints']} LP  
+                        {wins}W {losses}L  
+                        Win rate: {winrate:.0f}%  
+                        """)
+                
         else:
-            st.write("No information available.")
-
-        wins = league[0]['wins']
-        losses = league[0]['losses']
-        winrate = wins / (wins + losses) * 100
-
-        st.write(f"{wins}W {losses}L")
-        st.write(f"Winrate: {winrate:.0f}%")
+            st.write("No data available.")
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
